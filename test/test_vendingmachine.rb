@@ -113,4 +113,17 @@ A
     HERE
     assert_equal expected, $stdout.string
   end
+
+  def test_bad_change
+    machine = Machine.new
+    machine.add_item('A', 'Juicy Fruit', 0.65, 1)
+    machine.add_money(0.25, 1)
+    machine.command('q')
+    machine.command('q')
+    machine.command('q')
+    machine.command('A')
+    expected = "use correct change\n"
+    assert_equal expected, $stdout.string
+  end
+
 end
